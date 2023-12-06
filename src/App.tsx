@@ -17,11 +17,12 @@ interface TemplateData {
 function HandleClick(delta:number,position:number,positionSetter:any,datasetSize:number){
     if(position+delta<0){
         positionSetter(0)
-    }else if(position+delta > datasetSize){
-        positionSetter(position+delta)
+    }else if(position+delta > datasetSize-delta){
+        positionSetter(datasetSize-delta+1)
     }else{
         positionSetter(position+delta)
     }
+    console.log(position)
 }
 
 
@@ -68,8 +69,8 @@ function App() {
                                 click={() => setactiveTemplate(item)}
                             />
                         )}
-                        <span className="previous disabled" title="Previous" onClick={() => HandleClick(-4,position,setPosition,data.length)}>Previous</span>
-                        <a href="#" className="next" title="Next" onClick={() => HandleClick(4,position,setPosition,data.length)}>Next</a>
+                        <span className={`previous ${position<=0 ? "disabled" : ""}`} title="Previous" onClick={() => HandleClick(-4,position,setPosition,data.length)}>Previous</span>
+                        <a href="#" className={`next ${position>=data.length-3 ? "disabled" : ""}`} title="Next" onClick={() => HandleClick(4,position,setPosition,data.length)}>Next</a>
                     </div>
                 </div>
             </div>

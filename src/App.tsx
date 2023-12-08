@@ -32,17 +32,16 @@ function App() {
     const [data, setData] = useState<TemplateData[]>([])
 
     useEffect(() => {
-        fetch('./templates.json')
+        fetch('http://localhost:3030/templates')
             .then(response => {
                 return response.json();
             }).then(data => {
             setData(data);
+            setactiveTemplate(data[0])
         }).catch((e: Error) => {
             console.log(e.message);
         });
     }, []);
-
-    const activeItem= typeof activeTemplate === 'undefined'?data[0]:activeTemplate
 
     return (
         <div id="container">
@@ -65,7 +64,7 @@ function App() {
                                 thumb={item.thumbnail}
                                 title={item.title}
                                 description={item.title}
-                                active={item.id === activeItem?.id}
+                                active={item.id === activeTemplate?.id}
                                 click={() => setactiveTemplate(item)}
                             />
                         )}

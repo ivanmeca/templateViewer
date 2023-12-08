@@ -32,7 +32,7 @@ function App() {
     const [data, setData] = useState<TemplateData[]>([])
 
     useEffect(() => {
-        fetch('./templates.json')
+        fetch('http://localhost:3030/templates')
             .then(response => {
                 return response.json();
             }).then(data => {

@@ -22,9 +22,7 @@ function HandleClick(delta:number,position:number,positionSetter:any,datasetSize
     }else{
         positionSetter(position+delta)
     }
-    console.log(position)
 }
-
 
 function App() {
     const [position, setPosition] = useState(0);
